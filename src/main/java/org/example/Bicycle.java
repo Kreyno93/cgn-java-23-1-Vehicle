@@ -11,13 +11,6 @@ public class Bicycle extends Vehicle implements Accelerate {
                 "} " + super.toString();
     }
 
-    public void action(String action, int kmh) {
-        if (action.equals("accelerate")) {
-            accelerate(kmh);
-        } else if(action.equals("brake")) {
-            brake(kmh);
-        }
-    }
     public Bicycle(int id, String name, int velocity) {
         super(id, name, velocity);
     }
@@ -28,12 +21,19 @@ public class Bicycle extends Vehicle implements Accelerate {
 
     @Override
     public int accelerate(int kmh) {
-        return getVelocity()+kmh;
+        if (getVelocity()+kmh >= 35)  {
+            velocity = 35;
+            return 35;
+        }
+
+        velocity+=kmh;
+        return velocity;
     }
 
     @Override
-    public int brake(int kmh) {
-        return 0;
+    public int brake() {
+        velocity = 0;
+        return velocity;
     }
 
 
